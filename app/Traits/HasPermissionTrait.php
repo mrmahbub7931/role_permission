@@ -2,6 +2,9 @@
 
 namespace App\Traits;
 
+use App\Models\Role;
+use App\Models\User;
+
 trait HasPermissionTrait {
     /**
      * > This function returns all the agents that belong to this user
