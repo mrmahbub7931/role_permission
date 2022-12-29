@@ -29,7 +29,7 @@ class LoginController extends Controller
     // protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function redirectTo(){
-        return "okay";
+        return redirect()->route('dashboard');
     }
 
     /**

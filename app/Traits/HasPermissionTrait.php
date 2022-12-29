@@ -25,4 +25,5 @@ trait HasPermissionTrait {
     {
         return $this->belongsToMany(Role::class);
     }
+
 }
