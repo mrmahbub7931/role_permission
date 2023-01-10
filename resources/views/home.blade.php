@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@php
+    $user = \Auth::guard('admin')->user();
+@endphp
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
