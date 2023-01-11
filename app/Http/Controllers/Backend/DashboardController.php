@@ -23,6 +23,6 @@ class DashboardController extends Controller
         if (is_null($this->user)) {
             abort(403, 'Sorry !! You are Unauthorized to view dashboard !');
         }
-        return view('home');
+        return view('backend.pages.dashboard.index');
     }
 }

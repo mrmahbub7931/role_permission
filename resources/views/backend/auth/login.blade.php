@@ -1,4 +1,4 @@
-@extends('backend.layouts.master')
+@extends('backend.layouts.auth.master')
 @section('title','Login')
 @section('content')
     <!-- main @s -->

@@ -2,7 +2,7 @@
 <html lang="zxx" class="js">
 
 <head>
-    <base href="../../../">
+    <base href="../">
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,17 +10,36 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="./images/favicon.png">
     <!-- Page Title  -->
-    <title>@yield('title')</title>
+    <title>Analytics Dashboard | DashLite Admin Template</title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/dashlite.css?ver=2.4.0') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('backend/assets/css/theme.css?ver=2.4.0') }}">
+    @include('backend.layouts.partials.style')
 </head>
 
-<body class="nk-body npc-default @if (Route::has('login')) pg-auth @endif">
+<body class="nk-body npc-default has-apps-sidebar has-sidebar ">
     <div class="nk-app-root">
-        @yield('content')
+        <!-- sidebar -->
+        @include('backend.layouts.partials.sidebar')
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                @include('backend.layouts.partials.header')
+                <!-- main header @e -->
+                @include('backend.layouts.partials.subsidebar')
+                <!-- content @s -->
+                <div class="nk-content ">
+                    @yield('content')
+                </div>
+                <!-- content @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
     </div>
-    <script src="{{ asset('backend/assets/js/bundle.js?ver=2.4.0') }}"></script>
-    <script src="{{ asset('backend/assets/js/scripts.js?ver=2.4.0') }}"></script>
+    <!-- app-root @e -->
+    <!-- JavaScript -->
+    @include('backend.layouts.partials.script')
 </body>
+
 </html>
