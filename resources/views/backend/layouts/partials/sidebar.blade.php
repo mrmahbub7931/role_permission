@@ -14,12 +14,17 @@
                 <div class="nk-sidebar-menu">
                     <!-- Menu -->
                     <ul class="nk-menu apps-menu">
-                        <li class="nk-menu-item">
-                            <a href="{{route('admin.dashboard')}}" class="nk-menu-link" title="Dashboard">
-                                <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-hr"></li>
+                        @foreach (menu() as $menuKey => $menu)
+                            {{-- @can($menu['permission']) --}}
+                                <li class="nk-menu-item">
+                                    <a href="{{route('admin.'.$menu['route'].'')}}" class="nk-menu-link" title="{{ $menu['title'] }}">
+                                        <span class="nk-menu-icon"><em class="icon ni {{$menu['icon']}}"></em></span>
+                                    </a>
+                                </li>
+                            {{-- @endcan --}}
+                        @endforeach
+                        
+                        {{-- <li class="nk-menu-hr"></li>
                         <li class="nk-menu-item">
                             <a href="html/apps/mailbox.html" class="nk-menu-link" title="Mailbox">
                                 <span class="nk-menu-icon"><em class="icon ni ni-inbox"></em></span>
@@ -55,7 +60,7 @@
                             <a href="html/components.html" class="nk-menu-link" title="Go to Components">
                                 <span class="nk-menu-icon"><em class="icon ni ni-layers"></em></span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="nk-sidebar-footer">
