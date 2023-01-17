@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RolesController extends Controller
 {
+
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::guard('admin')->user();
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,11 @@ class RolesController extends Controller
      */
     public function index()
     {
-        //
+        if(is_null($this->user)){
+            abort(403, 'Sorry !! You are Unauthorized to view dashboard !');
+        }
+        $roles = Role::all();
+        return view('backend.pages.roles.index',compact('roles'));
     }
 
     /**

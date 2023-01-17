@@ -15,52 +15,18 @@
                     <!-- Menu -->
                     <ul class="nk-menu apps-menu">
                         @foreach (menu() as $menuKey => $menu)
+                            {{-- {{ dd(menu()) }} --}}
                             {{-- @can($menu['permission']) --}}
+                            @php
+                                $route_name = 'admin.'.$menu['route'];
+                            @endphp
                                 <li class="nk-menu-item">
-                                    <a href="{{route('admin.'.$menu['route'].'')}}" class="nk-menu-link" title="{{ $menu['title'] }}">
+                                    <a href="{{route('admin.'.$menu['route'].'')}}" class="nk-menu-link" title="{{ $menu['route'] }}">
                                         <span class="nk-menu-icon"><em class="icon ni {{$menu['icon']}}"></em></span>
                                     </a>
                                 </li>
                             {{-- @endcan --}}
                         @endforeach
-                        
-                        {{-- <li class="nk-menu-hr"></li>
-                        <li class="nk-menu-item">
-                            <a href="html/apps/mailbox.html" class="nk-menu-link" title="Mailbox">
-                                <span class="nk-menu-icon"><em class="icon ni ni-inbox"></em></span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a href="html/apps/messages.html" class="nk-menu-link" title="Messages">
-                                <span class="nk-menu-icon"><em class="icon ni ni-chat"></em></span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a href="html/apps/file-manager.html" class="nk-menu-link" title="File Manager">
-                                <span class="nk-menu-icon"><em class="icon ni ni-folder"></em></span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a href="html/apps/chats.html" class="nk-menu-link" title="Chats">
-                                <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a href="html/apps/calendar.html" class="nk-menu-link" title="Calendar">
-                                <span class="nk-menu-icon"><em class="icon ni ni-calendar"></em></span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-item">
-                            <a href="html/apps/kanban.html" class="nk-menu-link">
-                                <span class="nk-menu-icon"><em class="icon ni ni-template"></em></span>
-                            </a>
-                        </li>
-                        <li class="nk-menu-hr"></li>
-                        <li class="nk-menu-item">
-                            <a href="html/components.html" class="nk-menu-link" title="Go to Components">
-                                <span class="nk-menu-icon"><em class="icon ni ni-layers"></em></span>
-                            </a>
-                        </li> --}}
                     </ul>
                 </div>
                 <div class="nk-sidebar-footer">
