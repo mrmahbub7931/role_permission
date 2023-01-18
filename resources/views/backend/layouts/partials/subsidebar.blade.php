@@ -2,13 +2,15 @@
     <div class="nk-sidebar-inner" data-simplebar>
         <ul class="nk-menu nk-menu-md">
             @foreach (menu() as $menuKey => $menu)
-                @php
-                    $route_name = 'admin.'.$menu['route'];
-                @endphp
-                @if ($route_name === \Request::route()->getName())
+               
                     @foreach ($menu['sub_menu'] as $submenuKey => $submenu)
+                    @php
+                        $route_name = 'admin.'.$submenu['route'];
+                        // dd($route_name);
+                    @endphp
                     {{-- {{ dd($submenu['sub_item']) }} --}}
-                        <li class="nk-menu-item @isset($route_name) {{ request()->routeIs($route_name) ? 'has-sub' : '' }}@endisset">
+                    {{-- @if ($route_name === \Request::route()->getName()) --}}
+                        <li class="nk-menu-item @isset($route_name) {{ $route_name === \Request::route()->getName() ? 'has-sub active' : '' }}@endisset">
                             <a href="#" class="nk-menu-link nk-menu-toggle">
                                 <span class="nk-menu-icon"><em class="ni ni-{{$submenu['icon']}}"></em></span>
                                 <span class="nk-menu-text">{{$submenu['title']}}</span>
@@ -23,8 +25,8 @@
                                 </ul><!-- .nk-menu-sub -->
                             @endif
                         </li><!-- .nk-menu-item -->
+                        {{-- @endif --}}
                     @endforeach
-            @endif
             @endforeach
         </ul><!-- .nk-menu -->
     </div>

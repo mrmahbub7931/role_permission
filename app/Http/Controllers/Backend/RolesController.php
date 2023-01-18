@@ -27,7 +27,7 @@ class RolesController extends Controller
     public function index()
     {
         if(is_null($this->user)){
-            abort(403, 'Sorry !! You are Unauthorized to view dashboard !');
+            abort(403, 'Sorry !! You are Unauthorized to view roles page !');
         }
         $roles = Role::all();
         return view('backend.pages.roles.index',compact('roles'));
@@ -40,7 +40,11 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        if(is_null($this->user)){
+            abort(403, 'Sorry !! You are Unauthorized to create role !');
+        }
+
+        return view('backend.pages.roles.create');
     }
 
     /**

@@ -55,7 +55,7 @@ function menu(){
             'sub_menu' => [                
                 'roles' => [                    
                     'icon' => 'minus-sm',                    
-                    'route_name' => 'roles.index',                    
+                    'route' => 'roles.index',                    
                     'params' => [],                    
                     'title' => 'Roles and Permission',                    
                     'permission' => 'all',
@@ -76,7 +76,7 @@ function menu(){
                 ],            
                 'customer' => [                    
                     'icon' => 'minus-sm',                    
-                    'route_name' => 'customers.index',                    
+                    'route' => 'customers.index',                    
                     'params' => [],                    
                     'title' => 'Customers',                    
                     'permission' => 'all',
@@ -97,7 +97,7 @@ function menu(){
                 ],            
                 'admin' => [                    
                     'icon' => 'minus-sm',                    
-                    'route_name' => 'admins.index',                    
+                    'route' => 'admins.index',                    
                     'params' => [],                    
                     'title' => 'Admins',                    
                     'permission' => 'all',

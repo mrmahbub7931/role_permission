@@ -14,14 +14,14 @@
                 <div class="nk-sidebar-menu">
                     <!-- Menu -->
                     <ul class="nk-menu apps-menu">
+                        {{-- {{ dd(\Request::route()->getName()) }} --}}
                         @foreach (menu() as $menuKey => $menu)
-                            {{-- {{ dd(menu()) }} --}}
                             {{-- @can($menu['permission']) --}}
                             @php
                                 $route_name = 'admin.'.$menu['route'];
                             @endphp
-                                <li class="nk-menu-item">
-                                    <a href="{{route('admin.'.$menu['route'].'')}}" class="nk-menu-link" title="{{ $menu['route'] }}">
+                                <li class="nk-menu-item @isset($route_name){{ \Request::route()->getName() === $route_name ? 'active current-page' : '' }}@endisset">
+                                    <a href="{{route('admin.'.$menu['route'].'')}}" class="nk-menu-link" title="{{ $menu['title'] }}">
                                         <span class="nk-menu-icon"><em class="icon ni {{$menu['icon']}}"></em></span>
                                     </a>
                                 </li>
