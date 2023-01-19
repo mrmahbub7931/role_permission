@@ -13,6 +13,7 @@
     <title>Analytics Dashboard | DashLite Admin Template</title>
     <!-- StyleSheets  -->
     @include('backend.layouts.partials.style')
+    @stack('css')
 </head>
 
 <body class="nk-body npc-default has-apps-sidebar has-sidebar ">
@@ -40,6 +41,7 @@
     <!-- app-root @e -->
     <!-- JavaScript -->
     @include('backend.layouts.partials.script')
+    @stack('js')
 </body>
 
 </html>

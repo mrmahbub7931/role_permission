@@ -13,7 +13,7 @@ trait HasPermissionTrait {
      */
     public function agents()
     {
-        return $this->hasMany(User::class, 'parent_id');
+        return $this->hasMany(User::class, 'parent_id')->withTimestamps();
     }
 
     /**
@@ -23,7 +23,7 @@ trait HasPermissionTrait {
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
 }

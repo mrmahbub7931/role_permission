@@ -8,7 +8,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Guard Name</th>
+                    <th>Permissions</th>
                     <th>Created Time</th>
                     <th>Option</th>
                 </tr>
@@ -18,12 +18,23 @@
                     
                     <tr>
                         <td>{{$key + 1}}</td>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
+                        <td>{{$role->name}}</td>
+                        <td>
+                            {{-- {{ $role->permissions }} --}}
+                            @foreach ($role->permissions as $permission)
+                                {{-- {{ dd($permission->name) }} --}}
+                                <span class="badge badge-outline-primary">{{ $permission->name }}</span>
+                            @endforeach
+                        </td>
+                        <td>{{ date('F d, Y', strtotime($role->created_at)) }}</td>
                         <td>
                             <a href="{{route('admin.roles.edit',$role->id)}}" class="btn btn-dim btn-primary">Edit</a>
-                            <a  onclick="deleteRole({{ $role->id }})" href="{{route('admin.roles.delete',$role->id)}}" class="btn btn-dim btn-danger">Delete</a>
+                            <a  onclick="deleteRole({{ $role->id }})" href="javascript:;" class="btn btn-dim btn-danger">Delete</a>
+                            <form action="{{route('admin.roles.destroy',$role->id)}}" method="post"
+                                style="display: none" id="delete-form-{{ $role->id }}">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </td>
                     </tr>
                 @endforeach

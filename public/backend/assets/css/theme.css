@@ -6,3 +6,15 @@
  * Version	 :	1.0.0
  * Updated	 :	07.23.2020
 **/
+.bootstrap-tagsinput {
+    border: 1px solid #dbdfea;
+    padding: 0.4375rem 1rem;
+    height: calc(2.125rem + 2px);
+    width: 100%;
+}
+.bootstrap-tagsinput .tag {
+    margin-right: 2px;
+    color: white;
+    background: #6576ff;
+    padding: 0.2rem;
+}
