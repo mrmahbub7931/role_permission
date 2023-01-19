@@ -23,7 +23,7 @@
                             {{-- {{ $role->permissions }} --}}
                             @foreach ($role->permissions as $permission)
                                 {{-- {{ dd($permission->name) }} --}}
-                                <span class="badge badge-outline-primary">{{ $permission->name }}</span>
+                                <span class="badge badge-dim badge-outline-primary">{{ $permission->name }}</span>
                             @endforeach
                         </td>
                         <td>{{ date('F d, Y', strtotime($role->created_at)) }}</td>
