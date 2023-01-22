@@ -99,7 +99,10 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $rolePermissions = $role->permissions;
+
+        return view('backend.pages.roles.edit',compact('role','rolePermissions'));
     }
 
     /**
@@ -111,7 +114,28 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $request->validate([
+            'name'  => 'required|max:255'
+        ]);
+
+        $role->name = $request->name;
+        $role->slug = Str::slug($request->name);
+        $role->guard_name = 'Admin';
+        $role->save();
+        $role->permissions()->detach();
+        $role->permissions()->delete();
+        $rolePermissions = explode(',',$request->permissions);
+        foreach ($rolePermissions as $permissionKey => $permission) {
+            $permissions = new Permission();
+            $permissions->name = $permission;
+            $permissions->slug = Str::slug($permission);
+            $permissions->save();
+
+            $role->permissions()->attach($permissions->id);
+        }
+
+        return redirect()->route('admin.roles.index');
     }
 
     /**

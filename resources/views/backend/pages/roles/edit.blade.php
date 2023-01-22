@@ -10,7 +10,7 @@
                     <nav>
                         <ul class="breadcrumb breadcrumb-arrow">
                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Add Role</li>
+                            <li class="breadcrumb-item active">Update Role : {{ $role->name }}</li>
                         </ul>
                     </nav>
                     <div class="card card-bordered">
@@ -18,8 +18,9 @@
                             <div class="card-head">
                                 <h5 class="card-title">Website Setting</h5>
                             </div>
-                            <form action="{{ route('admin.roles.store') }}" method="POST" class="gy-3">
+                            <form action="{{ route('admin.roles.update',$role->id) }}" method="POST" class="gy-3">
                                 @csrf
+                                @method('PUT')
                                 <div class="row g-3 align-center">
                                     <div class="col-lg-5">
                                         <div class="form-group">
@@ -30,7 +31,7 @@
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control" id="name" name="name" value="">
+                                                <input type="text" class="form-control" id="name" name="name" value="{{ $role->name }}">
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +46,7 @@
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input data-role="tagsinput" type="text" class="form-control" id="permissions" name="permissions">
+                                                <input data-role="tagsinput" type="text" class="form-control" id="permissions" name="permissions" value="@foreach($rolePermissions as $permission) {{ $permission->name .','}}  @endforeach" >
                                             </div>
                                         </div>
                                     </div>
