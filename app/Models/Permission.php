@@ -23,6 +23,11 @@ class Permission extends Model
         return $this->belongsToMany(User::class, 'users_permissions')->withTimestamps();
     }
 
+    public function admins()
+    {
+        return $this->belongsToMany(User::class, 'admins_permissions')->withTimestamps();
+    }
+
     public function childPermissions()
     {
         return $this->hasMany(Permission::class, 'permissions');

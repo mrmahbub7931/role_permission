@@ -16,7 +16,7 @@
                     <div class="card card-bordered">
                         <div class="card-inner">
                             <div class="card-head">
-                                <h5 class="card-title">Website Setting</h5>
+                                <h5 class="card-title">Role update panel</h5>
                             </div>
                             <form action="{{ route('admin.roles.update',$role->id) }}" method="POST" class="gy-3">
                                 @csrf
@@ -54,7 +54,7 @@
                                 <div class="row g-3">
                                     <div class="col-lg-7 offset-lg-5">
                                         <div class="form-group mt-2">
-                                            <button type="submit" class="btn btn-dim btn-primary">Save Role</button>
+                                            <button type="submit" class="btn btn-dim btn-primary">Update Role</button>
                                         </div>
                                     </div>
                                 </div>

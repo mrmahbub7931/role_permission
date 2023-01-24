@@ -26,4 +26,9 @@ trait HasPermissionTrait {
         return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
+    public function adminPermissions()
+    {
+        return $this->belongsToMany(Permission::class,'admins_permissions')->withTimestamps();
+    }
+
 }

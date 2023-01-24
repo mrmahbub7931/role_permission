@@ -23,6 +23,11 @@ class Role extends Model
         return $this->belongsToMany(User::class,'users_roles')->withTimestamps();
     }
 
+    public function admins()
+    {
+        return $this->belongsToMany(User::class,'admins_roles')->withTimestamps();
+    }
+
     public function permissions()
     {
         return $this->belongsToMany(Permission::class,'roles_permissions')->withTimestamps();

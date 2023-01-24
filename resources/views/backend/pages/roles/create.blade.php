@@ -16,7 +16,7 @@
                     <div class="card card-bordered">
                         <div class="card-inner">
                             <div class="card-head">
-                                <h5 class="card-title">Website Setting</h5>
+                                <h5 class="card-title">Role managements</h5>
                             </div>
                             <form action="{{ route('admin.roles.store') }}" method="POST" class="gy-3">
                                 @csrf
