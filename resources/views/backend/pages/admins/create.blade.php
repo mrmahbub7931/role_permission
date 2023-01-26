@@ -12,6 +12,13 @@
                     </nav>
                     <div class="card card-bordered">
                         <div class="card-inner">
+                            @if ($errors->any())
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
                             <div class="card-head">
                                 <h5 class="card-title">User managements</h5>
                             </div>
@@ -27,7 +34,7 @@
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input type="text" class="form-control" id="name" name="name" value="">
+                                                <input type="text" class="form-control" id="name" name="name">
                                             </div>
                                         </div>
                                     </div>
@@ -42,7 +49,7 @@
                                     <div class="col-lg-7">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                <input data-role="tagsinput" type="text" class="form-control" id="permissions" name="permissions">
+                                                <input type="text" class="form-control" id="email" name="email">
                                             </div>
                                         </div>
                                     </div>
@@ -95,11 +102,11 @@
                                         </div>
                                         <div class="col-lg-7">
                                             <div class="form-group">
-                                                <div class="form-control-wrap">
-                                                    <div class="custom-control custom-checkbox permissions_list">
-                                                        {{-- <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                        <label class="custom-control-label" for="customCheck1">Option Label</label> --}}
-                                                    </div>
+                                                <div class="form-control-wrap permissions_list">
+                                                    {{-- <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                        <label class="custom-control-label" for="customCheck1">Option Label</label>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -126,14 +133,30 @@
         (function($){
             $(document).ready(function() {
                 var permission_box = $('.permission_box');
+                var permission_list = $('.permissions_list');
                 permission_box.hide();
 
                 $('#role').on('change', function(){
+                    $(permission_list).empty();
                     let that = $(this);
                     let role_id = that.find(':selected').data('role-id'),
                         role_slug = that.find(':selected').data('role-slug');
                     $.ajax({
-                        type: 'GET'
+                        url: 'admins/create',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            role_id: role_id,
+                            role_slug: role_slug
+                        },
+                        success: function(response){
+                            permission_box.show();
+                            // console.log(response);
+                            $.each(response, function(index,element){
+                                console.log(element);
+                                $(permission_list).append('<div class="custom-control custom-control-sm custom-checkbox mr-3"><input type="checkbox" class="custom-control-input" id="'+element.slug+'" name="permissions[]" value="'+element.id+'"><label class="custom-control-label" for="'+element.slug+'"></label>'+element.name+'</div>');
+                            });
+                        }
                     });
                 });
             });
